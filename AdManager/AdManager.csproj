@@ -200,14 +200,38 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CampaignsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WebsitesController.cs" />
+    <Compile Include="Controllers\ZonesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IdentityHelper.cs" />
+    <Compile Include="Migrations\201805141725378_Initial.cs" />
+    <Compile Include="Migrations\201805141725378_Initial.Designer.cs">
+      <DependentUpon>201805141725378_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805141817287_Campaigns.cs" />
+    <Compile Include="Migrations\201805141817287_Campaigns.Designer.cs">
+      <DependentUpon>201805141817287_Campaigns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805141822220_Websites.cs" />
+    <Compile Include="Migrations\201805141822220_Websites.Designer.cs">
+      <DependentUpon>201805141822220_Websites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805141824259_Zones.cs" />
+    <Compile Include="Migrations\201805141824259_Zones.Designer.cs">
+      <DependentUpon>201805141824259_Zones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Campaign.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Website.cs" />
+    <Compile Include="Models\Zone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -268,6 +292,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
+    <Content Include="Views\Websites\Create.cshtml" />
+    <Content Include="Views\Websites\Delete.cshtml" />
+    <Content Include="Views\Websites\Details.cshtml" />
+    <Content Include="Views\Websites\Edit.cshtml" />
+    <Content Include="Views\Websites\Index.cshtml" />
+    <Content Include="Views\Zones\Create.cshtml" />
+    <Content Include="Views\Zones\Delete.cshtml" />
+    <Content Include="Views\Zones\Details.cshtml" />
+    <Content Include="Views\Zones\Edit.cshtml" />
+    <Content Include="Views\Zones\Index.cshtml" />
+    <Content Include="Views\Campaigns\Create.cshtml" />
+    <Content Include="Views\Campaigns\Delete.cshtml" />
+    <Content Include="Views\Campaigns\Details.cshtml" />
+    <Content Include="Views\Campaigns\Edit.cshtml" />
+    <Content Include="Views\Campaigns\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +324,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805141725378_Initial.resx">
+      <DependentUpon>201805141725378_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805141817287_Campaigns.resx">
+      <DependentUpon>201805141817287_Campaigns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805141822220_Websites.resx">
+      <DependentUpon>201805141822220_Websites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805141824259_Zones.resx">
+      <DependentUpon>201805141824259_Zones.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

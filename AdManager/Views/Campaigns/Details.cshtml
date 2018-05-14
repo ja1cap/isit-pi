@@ -1,0 +1,64 @@
+﻿@model AdManager.Models.Campaign
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Campaign</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Revenue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Revenue) @Html.DisplayFor(model => model.Currency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Budget) @Html.DisplayFor(model => model.Currency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClickUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClickUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BannerImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BannerImageUrl)
+            (@Html.DisplayFor(model => model.BannerImageWidth) x @Html.DisplayFor(model => model.BannerImageHeight) px)
+            <br />
+            <a href="@Model.ClickUrl" target="_blank">
+                <img src="@Model.BannerImageUrl" width="@Model.BannerImageWidth" height="@Model.BannerImageHeight" />
+            </a>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

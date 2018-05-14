@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@using AdManager.Models
+
+<ul class="nav navbar-nav">
+    @if (Request.IsAuthenticated)
+    {
+        <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+        <li>@Html.ActionLink("О программе", "About", "Home")</li>
+        <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+        if (User.IsInRole("ADMIN") || User.IsInRole("PUBLISHER"))
+        {
+            <li>@Html.ActionLink("Веб-сайты", "Index", "Websites")</li>
+        }
+        if (User.IsInRole("ADMIN") || User.IsInRole("PUBLISHER"))
+        {
+            <li>@Html.ActionLink("Зоны", "Index", "Zones")</li>
+        }
+        if (User.IsInRole("ADMIN") || User.IsInRole("ADVERTISER"))
+        {
+            <li>@Html.ActionLink("Кампании", "Index", "Campaigns")</li>
+        }
+    }
+</ul>
+

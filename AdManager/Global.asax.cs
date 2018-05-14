@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AdManager.Helpers;
+using AdManager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +20,8 @@ namespace AdManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ApplicationDbContext context = new ApplicationDbContext();
+            IdentityHelper.SeedIdentities(context);
         }
     }
 }
