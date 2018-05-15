@@ -1,17 +1,26 @@
 ﻿@model IEnumerable<AdManager.Models.Zone>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Зоны";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Зоны</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Создать", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        @if (User.IsInRole("ADMIN"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.WebsiteID)
         </th>
@@ -30,7 +39,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.Website.Name, "Details", "Websites", new { id = item.WebsiteID }, new {})
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        @if (User.IsInRole("ADMIN"))
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+}
+        <td>
+            @Html.ActionLink(item.Website.Name, "Details", "Websites", new { id = item.WebsiteID }, new { })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -42,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.AdPlacementHeight)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Изменить", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Просмотреть", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
         </td>
     </tr>
 }

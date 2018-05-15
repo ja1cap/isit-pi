@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace AdManager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN,ADVERTISER")]
     public class CampaignsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

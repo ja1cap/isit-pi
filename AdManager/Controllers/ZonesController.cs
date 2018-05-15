@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace AdManager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN,PUBLISHER")]
     public class ZonesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -38,7 +38,7 @@ namespace AdManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zone zone = await db.Zones.FindAsync(id);
+            Zone zone = await db.Zones.Include("Website").SingleAsync(z => z.ID == id);
             if (zone == null)
             {
                 return HttpNotFound();
@@ -49,7 +49,8 @@ namespace AdManager.Controllers
         // GET: Zones/Create
         public ActionResult Create()
         {
-            ViewBag.WebsiteID = new SelectList(db.Websites, "ID", "Name");
+            var userID = User.Identity.GetUserId();
+            ViewBag.WebsiteID = new SelectList(db.Websites.Where(w => w.UserID.Equals(userID)).ToList(), "ID", "Name");
             return View();
         }
 
@@ -69,7 +70,9 @@ namespace AdManager.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.WebsiteID = new SelectList(db.Websites, "ID", "Name", zone.WebsiteID);
+            var userID = User.Identity.GetUserId();
+            ViewBag.WebsiteID = new SelectList(db.Websites.Where(w => w.UserID.Equals(userID)).ToList(), "ID", "Name");
+
             return View(zone);
         }
 
@@ -85,7 +88,10 @@ namespace AdManager.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.WebsiteID = new SelectList(db.Websites, "ID", "Name", zone.WebsiteID);
+
+            var userID = User.Identity.GetUserId();
+            ViewBag.WebsiteID = new SelectList(db.Websites.Where(w => w.UserID.Equals(userID)).ToList(), "ID", "Name", zone.WebsiteID);
+
             return View(zone);
         }
 
@@ -94,7 +100,7 @@ namespace AdManager.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,WebsiteID,Name,AdPlacementWidth,AdPlacementHeight")] Zone zone)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,UserID,WebsiteID,Name,AdPlacementWidth,AdPlacementHeight")] Zone zone)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +108,10 @@ namespace AdManager.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.WebsiteID = new SelectList(db.Websites, "ID", "Name", zone.WebsiteID);
+
+            var userID = User.Identity.GetUserId();
+            ViewBag.WebsiteID = new SelectList(db.Websites.Where(w => w.UserID.Equals(userID)).ToList(), "ID", "Name", zone.WebsiteID);
+
             return View(zone);
         }
 
@@ -113,7 +122,7 @@ namespace AdManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Zone zone = await db.Zones.FindAsync(id);
+            Zone zone = await db.Zones.Include("Website").SingleAsync(z => z.ID == id);
             if (zone == null)
             {
                 return HttpNotFound();

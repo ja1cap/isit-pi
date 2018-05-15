@@ -17,6 +17,7 @@ namespace AdManager.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -139,6 +140,7 @@ namespace AdManager.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.RoleId = new SelectList(db.Roles.Where(r => !r.Name.Equals("ADMIN")), "Id", "Name");
             return View();
         }
 
@@ -155,6 +157,10 @@ namespace AdManager.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    var role = db.Roles.Where(r => r.Id.Equals(model.RoleId)).Single();
+                    await UserManager.AddToRoleAsync(user.Id, role.Name);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Дополнительные сведения о включении подтверждения учетной записи и сброса пароля см. на странице https://go.microsoft.com/fwlink/?LinkID=320771.

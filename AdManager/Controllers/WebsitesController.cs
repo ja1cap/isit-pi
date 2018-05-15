@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace AdManager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "ADMIN,PUBLISHER")]
     public class WebsitesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -119,7 +119,7 @@ namespace AdManager.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Url,Name,ContactName,ContactEmail")] Website website)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Url,UserID,Name,ContactName,ContactEmail")] Website website)
         {
             if (ModelState.IsValid)
             {

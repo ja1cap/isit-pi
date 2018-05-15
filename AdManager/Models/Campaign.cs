@@ -13,6 +13,7 @@ namespace AdManager.Models
         [Required]
         [Display(Name = "Название")]
         public string Name { get; set; }
+        [Display(Name = "Пользователь")]
         public string UserID { get; set; }
         public virtual ApplicationUser User { get; set; }
         [Range(1, 99)]

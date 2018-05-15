@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -19,6 +20,15 @@ namespace AdManager
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var matches = config.Formatters
+                 .Where(f => f.SupportedMediaTypes
+                              .Where(m => m.MediaType.ToString() == "application/xml" ||
+                                          m.MediaType.ToString() == "text/xml")
+                              .Count() > 0)
+                 .ToList();
+            foreach (var match in matches)
+                config.Formatters.Remove(match);
         }
     }
 }

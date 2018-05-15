@@ -22,6 +22,7 @@
         <h2>Get more libraries</h2>
         <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <div class="ad-placeholder" data-zoneid="2"></div>
     </div>
     <div class="col-md-4">
         <h2>Web Hosting</h2>
@@ -29,3 +30,26 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+@section Scripts {
+    <script>
+        $(function () {
+            var $adPlaceholders = $('.ad-placeholder');
+            $adPlaceholders.each(function () {
+                var $adPlaceholder = $(this);
+                var ZoneId = $adPlaceholder.data('zoneid');
+                $.getJSON(
+                    '/api/Banner',
+                    {
+                        ZoneId: ZoneId 
+                    },
+                    function (data) {
+                        console.log(data);
+                        $adPlaceholder.height(data.BannerHeight);
+                        $adPlaceholder.width(data.BannerWidth);
+                        $adPlaceholder.html(data.BannerHtml);
+                    }
+                );
+            })
+        })
+    </script>
+}  

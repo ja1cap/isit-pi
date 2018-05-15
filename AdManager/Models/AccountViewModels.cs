@@ -79,6 +79,9 @@ namespace AdManager.Models
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "Роль пользователя")]
+        public string RoleId { get; set; }
     }
 
     public class ResetPasswordViewModel

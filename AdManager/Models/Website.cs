@@ -9,6 +9,7 @@ namespace AdManager.Models
     public class Website
     {
         public int ID { get; set; }
+        [Display(Name = "Пользователь")]
         public string UserID { get; set; }
         public ApplicationUser User { get; set; }
         public virtual ICollection<Zone> Zones { get; set; }

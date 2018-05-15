@@ -9,6 +9,7 @@ namespace AdManager.Models
     public class Zone
     {
         public int ID { get; set; }
+        [Display(Name = "Пользователь")]
         public string UserID { get; set; }
         public ApplicationUser User { get; set; }
         [Display(Name = "Веб-сайт")]
