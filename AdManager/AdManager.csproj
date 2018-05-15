@@ -233,10 +233,19 @@
     <Compile Include="Migrations\201805141824259_Zones.Designer.cs">
       <DependentUpon>201805141824259_Zones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805151501216_Clicks.cs" />
+    <Compile Include="Migrations\201805151501216_Clicks.Designer.cs">
+      <DependentUpon>201805151501216_Clicks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805151510348_ClickCurrency.cs" />
+    <Compile Include="Migrations\201805151510348_ClickCurrency.Designer.cs">
+      <DependentUpon>201805151510348_ClickCurrency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApiResponseModels.cs" />
     <Compile Include="Models\Campaign.cs" />
+    <Compile Include="Models\Click.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Website.cs" />
@@ -346,6 +355,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805141824259_Zones.resx">
       <DependentUpon>201805141824259_Zones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805151501216_Clicks.resx">
+      <DependentUpon>201805151501216_Clicks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805151510348_ClickCurrency.resx">
+      <DependentUpon>201805151510348_ClickCurrency.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

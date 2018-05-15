@@ -43,6 +43,14 @@ namespace AdManager.Controllers
             {
                 return HttpNotFound();
             }
+
+            var clicks = db.Clicks
+                .Where(c => c.CampaignID.Equals(campaign.ID))
+                .Include(c => c.Zone.Website)
+                .OrderByDescending(c => c.CreateAt);
+
+            campaign.Clicks = await clicks.ToListAsync();
+
             return View(campaign);
         }
 

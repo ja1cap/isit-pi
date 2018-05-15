@@ -45,6 +45,69 @@
 
     </dl>
 </div>
+
+
+<h4>Переходы</h4>
+<dl class="dl-horizontal">
+    <dt>
+        Всего переходов
+    </dt>
+    <dd>
+        @ViewData["clicksAmount"]
+    </dd>
+    <dt>
+        Общий заработок
+    </dt>
+    <dd>
+        @foreach (var item in ViewBag.clicksTotalRevenue)
+        {
+            <span class="label label-primary">@item.Revenue @item.Currency</span>
+        }
+    </dd>
+</dl>
+
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Кампания
+        </th>
+        <th>
+            Баннер
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+            Дата
+        </th>
+    </tr>
+    @foreach (var item in Model.Clicks)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Campaign.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Revenue) @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateAt)
+            </td>
+            <td>
+                <a href="@item.Campaign.BannerImageUrl" target="_blank">
+                    Просмотреть банер
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
 <p>
     @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Вернуться к списку", "Index")

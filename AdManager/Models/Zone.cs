@@ -24,5 +24,6 @@ namespace AdManager.Models
         [Required]
         [Display(Name = "Высота блока(px)")]
         public int AdPlacementHeight { get; set; }
+        public virtual ICollection<Click> Clicks { get; set; }
     }
 }

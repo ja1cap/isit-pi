@@ -21,8 +21,19 @@ namespace AdManager.Controllers.Api
             var campaign = db.Campaigns.Find(reqParams.CampaignID);
             if (campaign != null && campaign.Budget > 0)
             {
+
                 campaign.Budget = campaign.Budget - campaign.Revenue;
+
+                Click click = new Click() {
+                    ZoneID = reqParams.ZoneID,
+                    CampaignID = campaign.ID,
+                    Revenue = campaign.Revenue,
+                    Currency = campaign.Currency
+                };
+                db.Clicks.Add(click);
+
                 db.SaveChanges();
+
                 redirecUrl = campaign.ClickUrl;
             }
             return Redirect(redirecUrl);

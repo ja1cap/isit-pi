@@ -8,7 +8,7 @@
 <h2>Информация</h2>
 
 <div>
-    <h4>Campaign</h4>
+    <h4>Кампания</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -58,6 +58,42 @@
 
     </dl>
 </div>
+
+<h4>Переходы</h4>
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Сайт
+        </th>
+        <th>
+           Цена
+        </th>
+        <th>
+           Дата
+        </th>
+    </tr>
+    @foreach (var item in Model.Clicks)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zone.Website.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Revenue) @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateAt)
+            </td>
+        </tr>
+    }
+</table>
+
 <p>
     @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Вернуться к списку", "Index")

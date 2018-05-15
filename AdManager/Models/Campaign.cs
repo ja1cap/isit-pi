@@ -41,5 +41,12 @@ namespace AdManager.Models
         [Required]
         [Display(Name = "Высота изображения(px)")]
         public int BannerImageHeight { get; set; }
+        public virtual ICollection<Click> Clicks { get; set; }
+        public Campaign()
+        {
+            Revenue = 1;
+            Budget = 1000;
+            Currency = "BYN";
+        }
     }
 }

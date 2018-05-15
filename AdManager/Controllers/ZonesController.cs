@@ -43,6 +43,21 @@ namespace AdManager.Controllers
             {
                 return HttpNotFound();
             }
+
+            var clicks = db.Clicks
+                .Where(c => c.ZoneID.Equals(zone.ID))
+                .Include(c => c.Campaign)
+                .OrderByDescending(c => c.CreateAt);
+
+            ViewBag.clicksAmount = await clicks.CountAsync();
+
+            ViewBag.clicksTotalRevenue = await clicks.GroupBy(c => c.Currency).Select(c => new ClickRevenueCurrency {
+                Revenue = c.Sum(i => i.Revenue),
+                Currency = c.Key,
+            }).ToListAsync();
+
+            zone.Clicks = await clicks.ToListAsync();
+
             return View(zone);
         }
 

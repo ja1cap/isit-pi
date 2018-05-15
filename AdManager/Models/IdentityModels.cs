@@ -38,5 +38,6 @@ namespace AdManager.Models
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Website> Websites { get; set; }
         public DbSet<Zone> Zones { get; set; }
+        public DbSet<Click> Clicks { get; set; }
     }
 }
