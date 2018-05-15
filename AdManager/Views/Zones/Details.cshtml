@@ -45,7 +45,11 @@
 
     </dl>
 </div>
-
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>
+<hr/>
 
 <h4>Переходы</h4>
 <dl class="dl-horizontal">
@@ -75,13 +79,13 @@
             Кампания
         </th>
         <th>
-            Баннер
-        </th>
-        <th>
             Цена
         </th>
         <th>
             Дата
+        </th>
+        <th>
+            Баннер
         </th>
     </tr>
     @foreach (var item in Model.Clicks)
@@ -107,8 +111,3 @@
         </tr>
     }
 </table>
-
-<p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Вернуться к списку", "Index")
-</p>

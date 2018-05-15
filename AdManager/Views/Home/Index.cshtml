@@ -1,21 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Домашняя страница";
 }
 
 <div class="row">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-12 text-center">
         <h1>Демо версия</h1>
         <div class="ad-placeholder" data-zoneid="2" style="margin: 0 auto;"></div>
-    </div>
-    <div class="col-md-4">
     </div>
 </div>
 @section Scripts {
     <script>
         $(function () {
-            $('body').prepend('<div class="ad-placeholder" data-zoneid="2" style="margin: 0 auto;"></div>');
+            //$('body').prepend('<div class="ad-placeholder" data-zoneid="2" style="margin: 0 auto;"></div>');
             var $adPlaceholders = $('.ad-placeholder');
             $adPlaceholders.each(function () {
                 var $adPlaceholder = $(this);
@@ -23,7 +19,7 @@
                 $.getJSON(
                     'http://localhost:53596/api/Banner',
                     {
-                        ZoneID: ZoneID 
+                        ZoneID: ZoneID
                     },
                     function (data) {
                         console.log(data);
@@ -32,7 +28,21 @@
                         $adPlaceholder.html(data.BannerHtml);
                     }
                 );
-            })
+            });
+            /*
+            javascript: (function () {
+                function l(u, i) {
+                    var d = document;
+                    if (!d.getElementById(i)) {
+                        var s = d.createElement('script');
+                        s.src = u;
+                        s.id = i;
+                        d.body.appendChild(s);
+                    }
+                }
+                l('//code.jquery.com/jquery-3.2.1.min.js', 'jquery')
+            })();
+            */
         })
     </script>
 }  

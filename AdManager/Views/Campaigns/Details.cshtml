@@ -8,56 +8,67 @@
 <h2>Информация</h2>
 
 <div>
-    <h4>Кампания</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Кампания</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Revenue)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Revenue)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Revenue) @Html.DisplayFor(model => model.Currency)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Revenue) @Html.DisplayFor(model => model.Currency)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Budget)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Budget)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Budget) @Html.DisplayFor(model => model.Currency)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Budget) @Html.DisplayFor(model => model.Currency)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ClickUrl)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClickUrl)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ClickUrl)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ClickUrl)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BannerImageUrl)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BannerImageUrl)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BannerImageUrl)
-            (@Html.DisplayFor(model => model.BannerImageWidth) x @Html.DisplayFor(model => model.BannerImageHeight) px)
-            <br />
+                <dd>
+                    @Html.DisplayFor(model => model.BannerImageUrl)
+                    (@Html.DisplayFor(model => model.BannerImageWidth) x @Html.DisplayFor(model => model.BannerImageHeight) px)
+                </dd>
+            </dl>
+            <p>
+                @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
+                @Html.ActionLink("Вернуться к списку", "Index")
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h4>Предпросмотр</h4>
+            <hr />
             <a href="@Model.ClickUrl" target="_blank">
                 <img src="@Model.BannerImageUrl" width="@Model.BannerImageWidth" height="@Model.BannerImageHeight" />
             </a>
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
+<hr />
 
 <h4>Переходы</h4>
 <table class="table">
@@ -69,10 +80,10 @@
             Сайт
         </th>
         <th>
-           Цена
+            Цена
         </th>
         <th>
-           Дата
+            Дата
         </th>
     </tr>
     @foreach (var item in Model.Clicks)
@@ -93,8 +104,3 @@
         </tr>
     }
 </table>
-
-<p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Вернуться к списку", "Index")
-</p>
