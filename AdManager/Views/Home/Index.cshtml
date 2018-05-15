@@ -15,12 +15,13 @@
 @section Scripts {
     <script>
         $(function () {
+            $('body').prepend('<div class="ad-placeholder" data-zoneid="2" style="margin: 0 auto;"></div>');
             var $adPlaceholders = $('.ad-placeholder');
             $adPlaceholders.each(function () {
                 var $adPlaceholder = $(this);
                 var ZoneID = $adPlaceholder.data('zoneid');
                 $.getJSON(
-                    '/api/Banner',
+                    'http://localhost:53596/api/Banner',
                     {
                         ZoneID: ZoneID 
                     },
