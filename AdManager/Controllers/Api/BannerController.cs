@@ -9,7 +9,7 @@ namespace AdManager.Controllers.Api
 
     public class BannerRequestParameters {
         public int ZoneID { get; set; }
-    };
+    }
 
     public class BannerController : ApiController
     {
@@ -21,6 +21,10 @@ namespace AdManager.Controllers.Api
         {
 
             var zone = db.Zones.Find(reqParams.ZoneID);
+            if (zone == null)
+            {
+                return NotFound();
+            }
 
             var query = (from p in db.Campaigns
                          where p.Budget > 0
@@ -28,10 +32,16 @@ namespace AdManager.Controllers.Api
                          where p.BannerImageHeight <= zone.AdPlacementHeight
                          orderby p.Revenue descending
                          select p).Take(1).ToList();
+
+            if (query.Count == 0)
+            {
+                return NotFound();
+            }
+
             Campaign campaign = query.Single();
 
             var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
-            var clickUrl = baseUrl + "/api/ClickTracker?CampaignId="+campaign.ID+"&ZoneId="+ reqParams.ZoneID;
+            var clickUrl = baseUrl + "/api/ClickTracker?CampaignID="+campaign.ID+"&ZoneID="+ reqParams.ZoneID;
 
             var imageHtml = "<img src='" + campaign.BannerImageUrl + "'/>";
 

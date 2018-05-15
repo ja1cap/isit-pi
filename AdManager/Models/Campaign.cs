@@ -20,7 +20,7 @@ namespace AdManager.Models
         [Required]
         [Display(Name = "Цена перехода")]
         public int Revenue { get; set; }
-        [Range(1, 99999)]
+        [Range(0, 99999)]
         [Required]
         [Display(Name = "Бюджет")]
         public int Budget { get; set; }

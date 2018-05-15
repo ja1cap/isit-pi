@@ -36,11 +36,11 @@
             var $adPlaceholders = $('.ad-placeholder');
             $adPlaceholders.each(function () {
                 var $adPlaceholder = $(this);
-                var ZoneId = $adPlaceholder.data('zoneid');
+                var ZoneID = $adPlaceholder.data('zoneid');
                 $.getJSON(
                     '/api/Banner',
                     {
-                        ZoneId: ZoneId 
+                        ZoneID: ZoneID 
                     },
                     function (data) {
                         console.log(data);
